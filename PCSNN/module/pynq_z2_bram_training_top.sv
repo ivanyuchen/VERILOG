@@ -16,7 +16,7 @@ module pynq_z2_bram_training_top #(
     parameter int LEARN_SHIFT = 14,
     parameter int DECAY_SHIFT = 14,
     parameter int LEAK_SHIFT = 3,
-    parameter string TRAIN_SPIKE_FILE = "training_build/pynq_z2_bram_full/data/train_spikes_packed.mem"
+    parameter string TRAIN_INPUT_FILE = "training_build/pynq_z2_bram_full/data/train_inputs_q.mem"
 ) (
     input  logic clk,
     input  logic rst_n,
@@ -41,6 +41,8 @@ module pynq_z2_bram_training_top #(
   localparam int PIXEL_AW = $clog2(NUM_PIXELS);
   localparam int BLOCKS = NUM_NEURONS / BLOCK_NEURONS;
   localparam int BLOCK_AW = $clog2(BLOCKS);
+  localparam int TRAIN_INPUTS = TRAIN_STEPS * NUM_PIXELS;
+  localparam int TRAIN_INPUT_AW = $clog2(TRAIN_INPUTS);
 
   typedef enum logic [3:0] {  // SV enum: named FSM states encoded as 4-bit logic values.
     S_IDLE        = 4'd0,
@@ -48,7 +50,7 @@ module pynq_z2_bram_training_top #(
     S_SET_PIXEL   = 4'd2,
     S_READ_WAIT   = 4'd3,
     S_PIXEL_CALC  = 4'd4,
-    S_SLIF        = 4'd5,
+    S_SLIF_UPDATE = 4'd5,
     S_CAPTURE     = 4'd6,
     S_GRAD_ACCUM  = 4'd7,
     S_NEXT_STEP   = 4'd8,
@@ -61,24 +63,25 @@ module pynq_z2_bram_training_top #(
 
   state_t state;
   logic [PIXEL_AW-1:0] pixel_idx;
-  logic [PIXEL_AW-1:0] bram_rd_addr;
+  logic [PIXEL_AW-1:0] weight_rd_addr;
+  logic [PIXEL_AW-1:0] weight_wr_addr;
   logic [BLOCK_AW-1:0] block_idx;
   logic [$clog2(NUM_NEURONS)-1:0] block_base;
-  logic [NUM_PIXELS-1:0] train_spike_rom [0:TRAIN_STEPS-1];
+  logic [TRAIN_INPUT_AW-1:0] train_input_addr;
+  logic signed [DATA_WIDTH-1:0] train_input_rom [0:TRAIN_INPUTS-1];
   logic signed [DATA_WIDTH-1:0] error_mem [0:NUM_PIXELS-1];
   logic signed [GRAD_WIDTH-1:0] grad_accum [0:BLOCK_NEURONS-1][0:NUM_PIXELS-1];
 
-  logic signed [DATA_WIDTH-1:0] old_w_rd_data [0:NUM_NEURONS-1];
-  logic signed [DATA_WIDTH-1:0] final_w_rd_data [0:NUM_NEURONS-1];
-  logic signed [DATA_WIDTH-1:0] final_w_wr_data [0:NUM_NEURONS-1];
-  logic [NUM_NEURONS-1:0] final_w_wr_en;
+  logic signed [DATA_WIDTH-1:0] weight_rd_data [0:NUM_NEURONS-1];
+  logic signed [DATA_WIDTH-1:0] weight_wr_data [0:NUM_NEURONS-1];
+  logic [NUM_NEURONS-1:0] weight_wr_en;
 
-  logic [NUM_NEURONS-1:0] spike_state;
-  logic [NUM_NEURONS-1:0] spike_wire;
-  logic signed [DATA_WIDTH-1:0] voltage_wire [0:NUM_NEURONS-1];
-  logic signed [ACC_WIDTH-1:0] feedback_accum [0:NUM_NEURONS-1];
+  logic [NUM_NEURONS-1:0] slif_spike_state;
+  logic [NUM_NEURONS-1:0] slif_spike_out;
+  logic signed [DATA_WIDTH-1:0] slif_voltage [0:NUM_NEURONS-1];
+  logic signed [ACC_WIDTH-1:0] slif_current_in_accum [0:NUM_NEURONS-1];
 `ifdef SIM_DEBUG  // Debug-only signal array; not present unless SIM_DEBUG is enabled.
-  logic signed [DATA_WIDTH-1:0] debug_weight_arr [0:NUM_NEURONS-1];
+  logic signed [DATA_WIDTH-1:0] weight_debug_data [0:NUM_NEURONS-1];
 `endif
 
   logic signed [31:0] x_hat_sum;
@@ -89,12 +92,15 @@ module pynq_z2_bram_training_top #(
   logic [31:0] step_spike_count;
 
   initial begin
-    $readmemh(TRAIN_SPIKE_FILE, train_spike_rom);
+    $readmemh(TRAIN_INPUT_FILE, train_input_rom);
   end
 
   assign state_debug = state;
   assign block_base = block_idx * BLOCK_NEURONS;
-  assign x_scaled = train_spike_rom[train_step_count][pixel_idx] ? (32'sd1 <<< INPUT_SHIFT) : 32'sd0;
+  assign weight_wr_addr = pixel_idx;
+  assign train_input_addr = (train_step_count * NUM_PIXELS) + pixel_idx;
+  assign x_scaled = {{(32-DATA_WIDTH){train_input_rom[train_input_addr][DATA_WIDTH-1]}},
+                     train_input_rom[train_input_addr]};
   assign err_calc_32 = x_scaled - x_hat_sum;
   assign err_calc = (err_calc_32 > 32'sd32767) ? 16'sh7fff :
                     (err_calc_32 < -32'sd32768) ? 16'sh8000 :
@@ -105,10 +111,10 @@ module pynq_z2_bram_training_top #(
     x_hat_sum = 0;
     step_spike_count = 0;
     for (int n = 0; n < NUM_NEURONS; n++) begin
-      if (spike_state[n]) begin
-        x_hat_sum += $signed(old_w_rd_data[n]);
+      if (slif_spike_state[n]) begin
+        x_hat_sum += $signed(weight_rd_data[n]);
       end
-      if (spike_wire[n]) begin
+      if (slif_spike_out[n]) begin
         step_spike_count += 32'd1;
       end
     end
@@ -129,52 +135,33 @@ module pynq_z2_bram_training_top #(
     for (n = 0; n < NUM_NEURONS; n++) begin : GEN_NEURON
       localparam int THIS_BLOCK = n / BLOCK_NEURONS;
       localparam int LOCAL_IDX = n % BLOCK_NEURONS;
-      logic signed [ACC_WIDTH-1:0] slif_current;
+      logic signed [ACC_WIDTH-1:0] slif_current_in;
       logic signed [GRAD_WIDTH-1:0] grad_avg;
-      logic signed [31:0] final_w_next;
+      logic signed [31:0] weight_next;
 
-      assign slif_current = feedback_accum[n] >>> CORR_SHIFT;
+      assign slif_current_in = slif_current_in_accum[n] >>> CORR_SHIFT;
       assign grad_avg = grad_accum[LOCAL_IDX][pixel_idx] / TRAIN_STEPS;
-      assign final_w_next = $signed(old_w_rd_data[n])
+      assign weight_next = $signed(weight_rd_data[n])
           + ($signed(grad_avg) >>> LEARN_SHIFT)
-          - ($signed(old_w_rd_data[n]) >>> DECAY_SHIFT);
-      assign final_w_wr_data[n] = sat16(final_w_next);
-      assign final_w_wr_en[n] = (state == S_UPDATE_WRITE) && (block_idx == THIS_BLOCK[BLOCK_AW-1:0]);
+          - ($signed(weight_rd_data[n]) >>> DECAY_SHIFT);
+      assign weight_wr_data[n] = sat16(weight_next);
+      assign weight_wr_en[n] = (state == S_UPDATE_WRITE) && (block_idx == THIS_BLOCK[BLOCK_AW-1:0]);
 
       weight_bram_one #(
           .NEURON_ID(n),
           .NUM_PIXELS(NUM_PIXELS),
           .NUM_NEURONS(NUM_NEURONS),
           .DATA_WIDTH(DATA_WIDTH)
-      ) u_old_weight_bram (
+      ) u_weight_bram (
           .clk(clk),
-          .wr_en(1'b0),
-          .wr_addr(pixel_idx),
-          .wr_data('0),
-          .rd_addr(bram_rd_addr),
-          .rd_data(old_w_rd_data[n]),
+          .wr_en(weight_wr_en[n]),
+          .wr_addr(weight_wr_addr),
+          .wr_data(weight_wr_data[n]),
+          .rd_addr(weight_rd_addr),
+          .rd_data(weight_rd_data[n]),
 `ifdef SIM_DEBUG  // Only connect BRAM debug ports when the module interface includes them.
           .debug_addr(debug_pixel),
-          .debug_data(),
-`endif
-          .unused_tieoff(1'b0)
-      );
-
-      weight_bram_one #(
-          .NEURON_ID(n),
-          .NUM_PIXELS(NUM_PIXELS),
-          .NUM_NEURONS(NUM_NEURONS),
-          .DATA_WIDTH(DATA_WIDTH)
-      ) u_final_weight_bram (
-          .clk(clk),
-          .wr_en(final_w_wr_en[n]),
-          .wr_addr(pixel_idx),
-          .wr_data(final_w_wr_data[n]),
-          .rd_addr(bram_rd_addr),
-          .rd_data(final_w_rd_data[n]),
-`ifdef SIM_DEBUG  // Only connect BRAM debug ports when the module interface includes them.
-          .debug_addr(debug_pixel),
-          .debug_data(debug_weight_arr[n]),
+          .debug_data(weight_debug_data[n]),
 `endif
           .unused_tieoff(1'b0)
       );
@@ -187,18 +174,18 @@ module pynq_z2_bram_training_top #(
           .clk(clk),
           .rst_n(rst_n),
           .clear_v(clear_v || state == S_CLEAR_GRAD),
-          .update_en(state == S_SLIF),
-          .current_in(slif_current),
+          .update_en(state == S_SLIF_UPDATE),
+          .current_in(slif_current_in),
           .threshold(threshold),
-          .spike_out(spike_wire[n]),
-          .voltage(voltage_wire[n])
+          .spike_out(slif_spike_out[n]),
+          .voltage(slif_voltage[n])
       );
     end
   endgenerate
 
 `ifdef SIM_DEBUG  // Debug mux exists only in simulation/debug builds.
   always_comb begin
-    debug_weight = debug_weight_arr[debug_neuron];
+    debug_weight = weight_debug_data[debug_neuron];
   end
 `endif
 
@@ -211,11 +198,11 @@ module pynq_z2_bram_training_top #(
       total_neuron_spikes <= 32'd0;
       total_abs_error <= 32'd0;
       pixel_idx <= '0;
-      bram_rd_addr <= '0;
+      weight_rd_addr <= '0;
       block_idx <= '0;
-      spike_state <= '0;
+      slif_spike_state <= '0;
       for (int i = 0; i < NUM_NEURONS; i++) begin
-        feedback_accum[i] <= '0;
+        slif_current_in_accum[i] <= '0;
       end
       for (int l = 0; l < BLOCK_NEURONS; l++) begin
         for (int p = 0; p < NUM_PIXELS; p++) begin
@@ -234,19 +221,19 @@ module pynq_z2_bram_training_top #(
             total_neuron_spikes <= 32'd0;
             total_abs_error <= 32'd0;
             pixel_idx <= '0;
-            bram_rd_addr <= '0;
+            weight_rd_addr <= '0;
             block_idx <= '0;
-            spike_state <= '0;
+            slif_spike_state <= '0;
             state <= S_CLEAR_GRAD;
           end
         end
 
         S_CLEAR_GRAD: begin
-          spike_state <= '0;
+          slif_spike_state <= '0;
           train_step_count <= '0;
-          bram_rd_addr <= '0;
+          weight_rd_addr <= '0;
           for (int i = 0; i < NUM_NEURONS; i++) begin
-            feedback_accum[i] <= '0;
+            slif_current_in_accum[i] <= '0;
           end
           for (int l = 0; l < BLOCK_NEURONS; l++) begin
             grad_accum[l][pixel_idx] <= '0;
@@ -260,7 +247,7 @@ module pynq_z2_bram_training_top #(
         end
 
         S_SET_PIXEL: begin
-          bram_rd_addr <= pixel_idx;
+          weight_rd_addr <= pixel_idx;
           state <= S_READ_WAIT;
         end
 
@@ -274,27 +261,27 @@ module pynq_z2_bram_training_top #(
             total_abs_error <= total_abs_error + abs_err_calc;
           end
           for (int i = 0; i < NUM_NEURONS; i++) begin
-            feedback_accum[i] <= feedback_accum[i] + ($signed(err_calc) * $signed(old_w_rd_data[i]));
+            slif_current_in_accum[i] <= slif_current_in_accum[i] + ($signed(err_calc) * $signed(weight_rd_data[i]));
           end
           if (pixel_idx == NUM_PIXELS-1) begin
-            state <= S_SLIF;
+            state <= S_SLIF_UPDATE;
           end else begin
             pixel_idx <= pixel_idx + 1'b1;
             state <= S_SET_PIXEL;
           end
         end
 
-        S_SLIF: begin
+        S_SLIF_UPDATE: begin
           state <= S_CAPTURE;
         end
 
         S_CAPTURE: begin
-          spike_state <= spike_wire;
+          slif_spike_state <= slif_spike_out;
           if (block_idx == 0) begin
             total_neuron_spikes <= total_neuron_spikes + step_spike_count;
           end
           for (int i = 0; i < NUM_NEURONS; i++) begin
-            feedback_accum[i] <= '0;
+            slif_current_in_accum[i] <= '0;
           end
           pixel_idx <= '0;
           state <= S_GRAD_ACCUM;
@@ -302,7 +289,7 @@ module pynq_z2_bram_training_top #(
 
         S_GRAD_ACCUM: begin
           for (int l = 0; l < BLOCK_NEURONS; l++) begin
-            if (spike_wire[block_base + l]) begin
+            if (slif_spike_out[block_base + l]) begin
               grad_accum[l][pixel_idx] <= grad_accum[l][pixel_idx] + $signed(error_mem[pixel_idx]);
             end
           end
@@ -316,18 +303,18 @@ module pynq_z2_bram_training_top #(
         S_NEXT_STEP: begin
           if (train_step_count == TRAIN_STEPS-1) begin
             pixel_idx <= '0;
-            bram_rd_addr <= '0;
+            weight_rd_addr <= '0;
             state <= S_UPDATE_SET;
           end else begin
             train_step_count <= train_step_count + 1'b1;
             pixel_idx <= '0;
-            bram_rd_addr <= '0;
+            weight_rd_addr <= '0;
             state <= S_SET_PIXEL;
           end
         end
 
         S_UPDATE_SET: begin
-          bram_rd_addr <= pixel_idx;
+          weight_rd_addr <= pixel_idx;
           state <= S_UPDATE_WAIT;
         end
 
@@ -350,7 +337,7 @@ module pynq_z2_bram_training_top #(
           end else begin
             block_idx <= block_idx + 1'b1;
             pixel_idx <= '0;
-            bram_rd_addr <= '0;
+            weight_rd_addr <= '0;
             state <= S_CLEAR_GRAD;
           end
         end
