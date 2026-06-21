@@ -1,0 +1,13 @@
+# Vivado generated output
+.Xil/
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.ip_user_files/
+
+# Vivado logs and journals
+*.jou
+*.log
+*.str
+*.pb

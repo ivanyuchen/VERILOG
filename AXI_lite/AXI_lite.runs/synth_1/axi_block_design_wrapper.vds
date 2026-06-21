@@ -1,0 +1,348 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Jun 20 23:22:37 2026
+# Process ID         : 78806
+# Current directory  : /home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1
+# Command line       : vivado -log axi_block_design_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_block_design_wrapper.tcl
+# Log file           : /home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/axi_block_design_wrapper.vds
+# Journal file       : /home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/vivado.jou
+# Running On         : ivanyuchen-Predator-PHN16-71
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700HX
+# CPU Frequency      : 3400.000 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33355 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 41945 MB
+# Available Virtual  : 24318 MB
+#-----------------------------------------------------------
+source axi_block_design_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/ivanyuchen/2025.2/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental /home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.srcs/utils_1/imports/synth_1/axi_block_design_wrapper.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.srcs/utils_1/imports/synth_1/axi_block_design_wrapper.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top axi_block_design_wrapper -part xc7z020clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 79072
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2271.426 ; gain = 483.156 ; free physical = 7869 ; free virtual = 21730
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_wrapper' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/hdl/axi_block_design_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:13]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_dma_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_dma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_dma_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_dma_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'axi_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'axi_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'axi_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'axi_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+WARNING: [Synth 8-7071] port 's2mm_introut' of module 'axi_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'axi_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+WARNING: [Synth 8-7023] instance 'axi_dma_0' of module 'axi_block_design_axi_dma_0_0' has 64 connections declared, but only 58 given [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:212]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_mem_intercon_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:529]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1FVH9YL' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1058]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1FVH9YL' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1058]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1B3BLJV' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1299]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_pc_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_pc_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_us_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_us_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1B3BLJV' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1299]
+INFO: [Synth 8-6157] synthesizing module 's01_couplers_imp_LTJYH8' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1480]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_pc_1' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_pc_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_us_1' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_us_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_mem_intercon_imp_auto_us_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_auto_us_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's01_couplers_imp_LTJYH8' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1480]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_mem_intercon_imp_xbar_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_mem_intercon_imp_xbar_0_stub.v:6]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_arready' does not match port width (2) of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1028]
+WARNING: [Synth 8-689] width (64) of port connection 's_axi_rdata' does not match port width (128) of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1045]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rlast' does not match port width (2) of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1046]
+WARNING: [Synth 8-689] width (2) of port connection 's_axi_rresp' does not match port width (4) of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1048]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rvalid' does not match port width (2) of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:1049]
+WARNING: [Synth 8-7071] port 's_axi_bid' of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' is unconnected for instance 'xbar' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:979]
+WARNING: [Synth 8-7071] port 's_axi_rid' of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' is unconnected for instance 'xbar' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:979]
+WARNING: [Synth 8-7023] instance 'xbar' of module 'axi_block_design_axi_mem_intercon_imp_xbar_0' has 78 connections declared, but only 76 given [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:979]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_mem_intercon_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:529]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_axi_smc_1' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_smc_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_axi_smc_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_axi_smc_1_stub.v:6]
+WARNING: [Synth 8-7071] port 'M00_AXI_awprot' of module 'axi_block_design_axi_smc_1' is unconnected for instance 'axi_smc' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:347]
+WARNING: [Synth 8-7071] port 'M00_AXI_wstrb' of module 'axi_block_design_axi_smc_1' is unconnected for instance 'axi_smc' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:347]
+WARNING: [Synth 8-7071] port 'M00_AXI_arprot' of module 'axi_block_design_axi_smc_1' is unconnected for instance 'axi_smc' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:347]
+WARNING: [Synth 8-7023] instance 'axi_smc' of module 'axi_block_design_axi_smc_1' has 59 connections declared, but only 56 given [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:347]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_dma_add_one_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_dma_add_one_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_dma_add_one_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_dma_add_one_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_processing_system7_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_processing_system7_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_processing_system7_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'axi_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'axi_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'axi_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'axi_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'axi_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'axi_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'axi_block_design_processing_system7_0_0' has 110 connections declared, but only 104 given [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:415]
+INFO: [Synth 8-6157] synthesizing module 'axi_block_design_rst_ps7_0_100M_0' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_rst_ps7_0_100M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_rst_ps7_0_100M_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/.Xil/Vivado-78806-ivanyuchen-Predator-PHN16-71/realtime/axi_block_design_rst_ps7_0_100M_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'axi_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:520]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'axi_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:520]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'axi_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:520]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'axi_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:520]
+WARNING: [Synth 8-7023] instance 'rst_ps7_0_100M' of module 'axi_block_design_rst_ps7_0_100M_0' has 10 connections declared, but only 6 given [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:520]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/synth/axi_block_design.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'axi_block_design_wrapper' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/hdl/axi_block_design_wrapper.v:13]
+WARNING: [Synth 8-7129] Port M_ACLK in module s01_couplers_imp_LTJYH8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s01_couplers_imp_LTJYH8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_1B3BLJV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_1B3BLJV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_1FVH9YL is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_1FVH9YL is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_1FVH9YL is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_1FVH9YL is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ACLK in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ARESETN in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2367.363 ; gain = 579.094 ; free physical = 7772 ; free virtual = 21636
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2367.363 ; gain = 579.094 ; free physical = 7771 ; free virtual = 21637
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2367.363 ; gain = 579.094 ; free physical = 7771 ; free virtual = 21637
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2367.363 ; gain = 0.000 ; free physical = 7770 ; free virtual = 21635
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_dma_0_0/axi_block_design_axi_dma_0_0/axi_block_design_axi_dma_0_0_in_context.xdc] for cell 'axi_block_design_i/axi_dma_0'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_dma_0_0/axi_block_design_axi_dma_0_0/axi_block_design_axi_dma_0_0_in_context.xdc] for cell 'axi_block_design_i/axi_dma_0'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_processing_system7_0_0/axi_block_design_processing_system7_0_0/axi_block_design_processing_system7_0_0_in_context.xdc] for cell 'axi_block_design_i/processing_system7_0'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_processing_system7_0_0/axi_block_design_processing_system7_0_0/axi_block_design_processing_system7_0_0_in_context.xdc] for cell 'axi_block_design_i/processing_system7_0'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_dma_add_one_0_0/axi_block_design_dma_add_one_0_0/axi_block_design_dma_add_one_0_0_in_context.xdc] for cell 'axi_block_design_i/dma_add_one_0'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_dma_add_one_0_0/axi_block_design_dma_add_one_0_0/axi_block_design_dma_add_one_0_0_in_context.xdc] for cell 'axi_block_design_i/dma_add_one_0'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_smc_1/axi_block_design_axi_smc_1/axi_block_design_axi_smc_1_in_context.xdc] for cell 'axi_block_design_i/axi_smc'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_smc_1/axi_block_design_axi_smc_1/axi_block_design_axi_smc_1_in_context.xdc] for cell 'axi_block_design_i/axi_smc'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_rst_ps7_0_100M_0/axi_block_design_rst_ps7_0_100M_0/axi_block_design_rst_ps7_0_100M_0_in_context.xdc] for cell 'axi_block_design_i/rst_ps7_0_100M'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_rst_ps7_0_100M_0/axi_block_design_rst_ps7_0_100M_0/axi_block_design_rst_ps7_0_100M_0_in_context.xdc] for cell 'axi_block_design_i/rst_ps7_0_100M'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_xbar_0/axi_block_design_axi_mem_intercon_imp_xbar_0/axi_block_design_axi_mem_intercon_imp_xbar_0_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/xbar'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_xbar_0/axi_block_design_axi_mem_intercon_imp_xbar_0/axi_block_design_axi_mem_intercon_imp_xbar_0_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/xbar'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_pc_0/axi_block_design_axi_mem_intercon_imp_auto_pc_0/axi_block_design_axi_mem_intercon_imp_auto_pc_0_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s00_couplers/auto_pc'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_pc_0/axi_block_design_axi_mem_intercon_imp_auto_pc_0/axi_block_design_axi_mem_intercon_imp_auto_pc_0_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s00_couplers/auto_pc'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_us_0/axi_block_design_axi_mem_intercon_imp_auto_us_0/axi_block_design_axi_mem_intercon_imp_auto_us_0_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s00_couplers/auto_us'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_us_0/axi_block_design_axi_mem_intercon_imp_auto_us_0/axi_block_design_axi_mem_intercon_imp_auto_us_0_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s00_couplers/auto_us'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_pc_1/axi_block_design_axi_mem_intercon_imp_auto_pc_1/axi_block_design_axi_mem_intercon_imp_auto_pc_1_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s01_couplers/auto_pc'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_pc_1/axi_block_design_axi_mem_intercon_imp_auto_pc_1/axi_block_design_axi_mem_intercon_imp_auto_pc_1_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s01_couplers/auto_pc'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_us_1/axi_block_design_axi_mem_intercon_imp_auto_us_1/axi_block_design_axi_mem_intercon_imp_auto_us_1_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s01_couplers/auto_us'
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.gen/sources_1/bd/axi_block_design/ip/axi_block_design_axi_mem_intercon_imp_auto_us_1/axi_block_design_axi_mem_intercon_imp_auto_us_1/axi_block_design_axi_mem_intercon_imp_auto_us_1_in_context.xdc] for cell 'axi_block_design_i/axi_mem_intercon/s01_couplers/auto_us'
+Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2415.016 ; gain = 0.000 ; free physical = 7807 ; free virtual = 21674
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2415.051 ; gain = 0.000 ; free physical = 7806 ; free virtual = 21673
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2415.051 ; gain = 626.781 ; free physical = 7818 ; free virtual = 21723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2423.020 ; gain = 634.750 ; free physical = 7817 ; free virtual = 21723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2423.020 ; gain = 634.750 ; free physical = 7810 ; free virtual = 21718
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2423.020 ; gain = 634.750 ; free physical = 7797 ; free virtual = 21707
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7129] Port M00_ACLK in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[5] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[4] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[3] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[2] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[1] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[5] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[4] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[3] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[2] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[1] in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ACLK in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ARESETN in module axi_block_design_axi_mem_intercon_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2423.020 ; gain = 634.750 ; free physical = 7792 ; free virtual = 21757
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2531.020 ; gain = 742.750 ; free physical = 7844 ; free virtual = 21821
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2532.020 ; gain = 743.750 ; free physical = 7844 ; free virtual = 21821
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2542.035 ; gain = 753.766 ; free physical = 7829 ; free virtual = 21806
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21635
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21635
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21636
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21636
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21636
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21636
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+------------------------------------------------+----------+
+|      |BlackBox name                                   |Instances |
++------+------------------------------------------------+----------+
+|1     |axi_block_design_axi_dma_0_0                    |         1|
+|2     |axi_block_design_axi_mem_intercon_imp_xbar_0    |         1|
+|3     |axi_block_design_axi_mem_intercon_imp_auto_pc_0 |         1|
+|4     |axi_block_design_axi_mem_intercon_imp_auto_us_0 |         1|
+|5     |axi_block_design_axi_mem_intercon_imp_auto_pc_1 |         1|
+|6     |axi_block_design_axi_mem_intercon_imp_auto_us_1 |         1|
+|7     |axi_block_design_axi_smc_1                      |         1|
+|8     |axi_block_design_dma_add_one_0_0                |         1|
+|9     |axi_block_design_processing_system7_0_0         |         1|
+|10    |axi_block_design_rst_ps7_0_100M_0               |         1|
++------+------------------------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------------------------+------+
+|      |Cell                                          |Count |
++------+----------------------------------------------+------+
+|1     |axi_block_design_axi_dma_0                    |     1|
+|2     |axi_block_design_axi_mem_intercon_imp_auto_pc |     2|
+|4     |axi_block_design_axi_mem_intercon_imp_auto_us |     2|
+|6     |axi_block_design_axi_mem_intercon_imp_xbar    |     1|
+|7     |axi_block_design_axi_smc                      |     1|
+|8     |axi_block_design_dma_add_one_0                |     1|
+|9     |axi_block_design_processing_system7_0         |     1|
+|10    |axi_block_design_rst_ps7_0_100M               |     1|
++------+----------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.848 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21636
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 16 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2727.848 ; gain = 891.891 ; free physical = 7657 ; free virtual = 21637
+Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2727.855 ; gain = 939.578 ; free physical = 7657 ; free virtual = 21637
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2727.855 ; gain = 0.000 ; free physical = 7663 ; free virtual = 21644
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2727.855 ; gain = 0.000 ; free physical = 7796 ; free virtual = 21782
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: a1739d5d
+INFO: [Common 17-83] Releasing license: Synthesis
+53 Infos, 61 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:39 . Memory (MB): peak = 2727.883 ; gain = 1106.410 ; free physical = 7794 ; free virtual = 21783
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2071.994; main = 1860.771; forked = 282.577
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3716.680; main = 2727.852; forked = 1019.641
+INFO: [Common 17-1381] The checkpoint '/home/ivanyuchen/CODING_FILES/VERILOG/AXI_lite/AXI_lite.runs/synth_1/axi_block_design_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file axi_block_design_wrapper_utilization_synth.rpt -pb axi_block_design_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 20 23:23:24 2026...

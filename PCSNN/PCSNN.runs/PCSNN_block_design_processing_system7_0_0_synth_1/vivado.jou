@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Jun 21 14:07:54 2026
+# Process ID         : 19965
+# Current directory  : /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/PCSNN_block_design_processing_system7_0_0_synth_1
+# Command line       : vivado -log PCSNN_block_design_processing_system7_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source PCSNN_block_design_processing_system7_0_0.tcl
+# Log file           : /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/PCSNN_block_design_processing_system7_0_0_synth_1/PCSNN_block_design_processing_system7_0_0.vds
+# Journal file       : /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/PCSNN_block_design_processing_system7_0_0_synth_1/vivado.jou
+# Running On         : ivanyuchen-Predator-PHN16-71
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700HX
+# CPU Frequency      : 3700.000 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33355 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 41945 MB
+# Available Virtual  : 32832 MB
+#-----------------------------------------------------------
+source PCSNN_block_design_processing_system7_0_0.tcl -notrace
