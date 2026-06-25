@@ -12,6 +12,7 @@ module SNN_top #(
     input logic rst_n,
 
     input logic start,
+    input logic learn_enable,
     input logic [INPUT_DIM*PIXEL_BITS-1:0] X_t,
 
     output logic busy,
@@ -32,6 +33,7 @@ module SNN_top #(
       .clk(clk),
       .rst_n(rst_n),
       .start(start),
+      .learn_enable(learn_enable),
       .X_t(X_t),
       .busy(busy),
       .done(done),

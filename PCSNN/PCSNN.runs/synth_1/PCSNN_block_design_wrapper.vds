@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Sun Jun 21 19:46:58 2026
-# Process ID         : 82424
+# Start of session at: Thu Jun 25 09:30:42 2026
+# Process ID         : 167881
 # Current directory  : /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1
 # Command line       : vivado -log PCSNN_block_design_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source PCSNN_block_design_wrapper.tcl
 # Log file           : /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/PCSNN_block_design_wrapper.vds
@@ -13,13 +13,13 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.4 LTS
 # Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700HX
-# CPU Frequency      : 800.547 MHz
+# CPU Frequency      : 800.297 MHz
 # CPU Physical cores : 16
 # CPU Logical cores  : 24
 # Host memory        : 33355 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 41945 MB
-# Available Virtual  : 32612 MB
+# Available Virtual  : 32968 MB
 #-----------------------------------------------------------
 source PCSNN_block_design_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -33,16 +33,18 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 82737
+INFO: [Synth 8-7075] Helper process launched with PID 168127
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18856 ; free virtual = 29837
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2271.863 ; gain = 482.680 ; free physical = 12929 ; free virtual = 29984
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_wrapper' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/hdl/PCSNN_block_design_wrapper.v:13]
 INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:13]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_dma_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_dma_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_dma_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_dma_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_dma_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_dma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_dma_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_dma_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'PCSNN_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:212]
 WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'PCSNN_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:212]
 WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'PCSNN_block_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:212]
@@ -54,21 +56,21 @@ INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_0'
 INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1FKVAEL' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1333]
 INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1FKVAEL' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1333]
 INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_XD29NI' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1574]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_XD29NI' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1574]
 INFO: [Synth 8-6157] synthesizing module 's01_couplers_imp_XPY0CJ' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1755]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_1' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_1' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_auto_us_1' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_auto_us_1_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 's01_couplers_imp_XPY0CJ' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1755]
 INFO: [Synth 8-6157] synthesizing module 's02_couplers_imp_Y7YYXW' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1969]
 INFO: [Synth 8-6155] done synthesizing module 's02_couplers_imp_Y7YYXW' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:1969]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_xbar_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_xbar_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_xbar_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_imp_xbar_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_mem_intercon_imp_xbar_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_mem_intercon_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:558]
 WARNING: [Synth 8-7071] port 'S02_AXI_arready' of module 'PCSNN_block_design_axi_mem_intercon_0' is unconnected for instance 'axi_mem_intercon' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:271]
 WARNING: [Synth 8-7071] port 'S02_AXI_awready' of module 'PCSNN_block_design_axi_mem_intercon_0' is unconnected for instance 'axi_mem_intercon' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:271]
@@ -82,14 +84,14 @@ WARNING: [Synth 8-7071] port 'S02_AXI_rresp' of module 'PCSNN_block_design_axi_m
 WARNING: [Synth 8-7071] port 'S02_AXI_rvalid' of module 'PCSNN_block_design_axi_mem_intercon_0' is unconnected for instance 'axi_mem_intercon' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:271]
 WARNING: [Synth 8-7071] port 'S02_AXI_wready' of module 'PCSNN_block_design_axi_mem_intercon_0' is unconnected for instance 'axi_mem_intercon' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:271]
 WARNING: [Synth 8-7023] instance 'axi_mem_intercon' of module 'PCSNN_block_design_axi_mem_intercon_0' has 115 connections declared, but only 104 given [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:271]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_smc_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_smc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_smc_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_axi_smc_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_axi_smc_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_axi_smc_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'M00_AXI_awprot' of module 'PCSNN_block_design_axi_smc_0' is unconnected for instance 'axi_smc' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:376]
 WARNING: [Synth 8-7071] port 'M00_AXI_wstrb' of module 'PCSNN_block_design_axi_smc_0' is unconnected for instance 'axi_smc' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:376]
 WARNING: [Synth 8-7071] port 'M00_AXI_arprot' of module 'PCSNN_block_design_axi_smc_0' is unconnected for instance 'axi_smc' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:376]
 WARNING: [Synth 8-7023] instance 'axi_smc' of module 'PCSNN_block_design_axi_smc_0' has 59 connections declared, but only 56 given [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:376]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_processing_system7_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_processing_system7_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_processing_system7_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_processing_system7_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_processing_system7_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'PCSNN_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:433]
 WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'PCSNN_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:433]
 WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'PCSNN_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:433]
@@ -97,15 +99,15 @@ WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'PCSNN_block_design_pr
 WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'PCSNN_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:433]
 WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'PCSNN_block_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:433]
 WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'PCSNN_block_design_processing_system7_0_0' has 110 connections declared, but only 104 given [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:433]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_rst_ps7_0_100M_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_rst_ps7_0_100M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_rst_ps7_0_100M_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_rst_ps7_0_100M_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_rst_ps7_0_100M_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_rst_ps7_0_100M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_rst_ps7_0_100M_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_rst_ps7_0_100M_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'mb_reset' of module 'PCSNN_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:538]
 WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'PCSNN_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:538]
 WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'PCSNN_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:538]
 WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'PCSNN_block_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:538]
 WARNING: [Synth 8-7023] instance 'rst_ps7_0_100M' of module 'PCSNN_block_design_rst_ps7_0_100M_0' has 10 connections declared, but only 6 given [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:538]
-INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_snn_dma_wrapper_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_snn_dma_wrapper_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_snn_dma_wrapper_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-82424-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_snn_dma_wrapper_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'PCSNN_block_design_snn_dma_wrapper_0_0' [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_snn_dma_wrapper_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_snn_dma_wrapper_0_0' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/.Xil/Vivado-167881-ivanyuchen-Predator-PHN16-71/realtime/PCSNN_block_design_snn_dma_wrapper_0_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/synth/PCSNN_block_design.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'PCSNN_block_design_wrapper' (0#1) [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/hdl/PCSNN_block_design_wrapper.v:13]
 WARNING: [Synth 8-7129] Port M_ACLK in module s02_couplers_imp_Y7YYXW is either unconnected or has no load
@@ -129,18 +131,18 @@ WARNING: [Synth 8-7129] Port S01_ARESETN in module PCSNN_block_design_axi_mem_in
 WARNING: [Synth 8-7129] Port S02_ACLK in module PCSNN_block_design_axi_mem_intercon_0 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port S02_ARESETN in module PCSNN_block_design_axi_mem_intercon_0 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18788 ; free virtual = 29769
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2367.832 ; gain = 578.648 ; free physical = 12850 ; free virtual = 29907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18787 ; free virtual = 29769
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2373.770 ; gain = 584.586 ; free physical = 12849 ; free virtual = 29906
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18787 ; free virtual = 29769
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2373.770 ; gain = 584.586 ; free physical = 12849 ; free virtual = 29906
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18787 ; free virtual = 29768
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2373.770 ; gain = 0.000 ; free physical = 12849 ; free virtual = 29906
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -169,50 +171,32 @@ Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1
 Finished Parsing XDC File [/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18796 ; free virtual = 29777
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2421.422 ; gain = 0.000 ; free physical = 12977 ; free virtual = 30034
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18796 ; free virtual = 29777
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2421.457 ; gain = 0.000 ; free physical = 12975 ; free virtual = 30032
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18795 ; free virtual = 29777
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2421.457 ; gain = 632.273 ; free physical = 12788 ; free virtual = 29845
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18795 ; free virtual = 29777
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2429.426 ; gain = 640.242 ; free physical = 12788 ; free virtual = 29845
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18799 ; free virtual = 29782
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2429.426 ; gain = 640.242 ; free physical = 12787 ; free virtual = 29844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Start Preparing Guide Design
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2429.426 ; gain = 640.242 ; free physical = 12777 ; free virtual = 29835
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6895] The reference checkpoint /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/utils_1/imports/synth_1/snn_dma_wrapper.dcp is not suitable for use with incremental synthesis for this design. Please regenerate the checkpoint for this design with -incremental_synth switch in the same Vivado session that synth_design has been run. Synthesis will continue with the default flow
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18790 ; free virtual = 29774
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18790 ; free virtual = 29774
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18790 ; free virtual = 29774
----------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : 
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -249,25 +233,25 @@ WARNING: [Synth 8-7129] Port S01_ARESETN in module PCSNN_block_design_axi_mem_in
 WARNING: [Synth 8-7129] Port S02_ACLK in module PCSNN_block_design_axi_mem_intercon_0 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port S02_ARESETN in module PCSNN_block_design_axi_mem_intercon_0 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18797 ; free virtual = 29786
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2429.426 ; gain = 640.242 ; free physical = 12751 ; free virtual = 29814
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18674 ; free virtual = 29662
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2532.426 ; gain = 743.242 ; free physical = 12647 ; free virtual = 29710
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18674 ; free virtual = 29662
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2533.426 ; gain = 744.242 ; free physical = 12647 ; free virtual = 29710
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18659 ; free virtual = 29648
+Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2543.441 ; gain = 754.258 ; free physical = 12634 ; free virtual = 29696
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -285,37 +269,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18508 ; free virtual = 29497
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18508 ; free virtual = 29497
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -351,27 +335,26 @@ Report Cell Usage:
 |10    |PCSNN_block_design_snn_dma_wrapper_0            |     1|
 +------+------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.254 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 1 critical warnings and 16 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
-Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18507 ; free virtual = 29496
+Synthesis finished with 0 errors, 0 critical warnings and 16 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2730.254 ; gain = 893.383 ; free physical = 12661 ; free virtual = 29724
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2730.262 ; gain = 941.070 ; free physical = 12661 ; free virtual = 29724
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18667 ; free virtual = 29656
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2730.262 ; gain = 0.000 ; free physical = 12828 ; free virtual = 29893
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2767.938 ; gain = 0.000 ; free physical = 18689 ; free virtual = 29678
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2730.262 ; gain = 0.000 ; free physical = 12853 ; free virtual = 29918
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 Synth Design complete | Checksum: 77ed20cd
 INFO: [Common 17-83] Releasing license: Synthesis
-52 Infos, 71 Warnings, 1 Critical Warnings and 0 Errors encountered.
+55 Infos, 71 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 2767.938 ; gain = 1136.555 ; free physical = 18693 ; free virtual = 29682
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1769.007; main = 1769.007; forked = 254.567
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3445.043; main = 2729.230; forked = 1019.641
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2730.289 ; gain = 1098.934 ; free physical = 12820 ; free virtual = 29884
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1770.524; main = 1770.524; forked = 254.248
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3449.070; main = 2730.258; forked = 1019.641
 INFO: [Common 17-1381] The checkpoint '/home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.runs/synth_1/PCSNN_block_design_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file PCSNN_block_design_wrapper_utilization_synth.rpt -pb PCSNN_block_design_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jun 21 19:47:22 2026...
+INFO: [Common 17-206] Exiting Vivado at Thu Jun 25 09:31:10 2026...

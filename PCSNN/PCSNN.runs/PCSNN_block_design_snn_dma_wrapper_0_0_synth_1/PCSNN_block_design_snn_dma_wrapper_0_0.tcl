@@ -57,7 +57,6 @@ if {$::dispatch::connected} {
 
 OPTRACE "PCSNN_block_design_snn_dma_wrapper_0_0_synth_1" START { ROLLUP_AUTO }
 set_param bd.open.in_stealth_mode 1
-set_param chipscope.maxJobs 1
 set_param general.usePosixSpawnForFork 1
 set_msg_config -id {HDL-1065} -limit 10000
 set_param project.vivado.isBlockSynthRun true
@@ -71,6 +70,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.cache/wt [current_project]
 set_property parent.project_path /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.xpr [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
@@ -79,137 +79,6 @@ set_property ip_output_repo /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.ca
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_mem {
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_039.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_012.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_057.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_081.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_055.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_098.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_020.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_014.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_063.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_103.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_049.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_006.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_071.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_040.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_002.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_010.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_053.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_113.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_126.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_059.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_029.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_096.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_016.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weights_flat.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_083.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_065.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_022.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_047.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_101.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_078.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_004.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_115.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_085.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_042.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_033.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_027.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_093.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_036.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_076.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_079.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_050.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_125.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_019.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_108.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_121.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_104.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_117.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_044.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_001.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_031.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_008.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_087.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_068.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_038.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_061.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_025.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_074.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_106.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_119.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_091.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_123.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_013.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_021.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_099.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_110.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_064.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_102.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_072.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_048.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_005.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_089.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_100.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_011.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_054.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_097.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_080.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_058.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_112.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_015.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_070.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_109.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_023.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_120.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_066.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_003.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_046.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_127.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_052.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_114.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_017.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_082.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_095.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_026.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_051.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_069.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_094.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_077.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_009.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_034.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_107.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_035.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_018.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_122.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_124.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_116.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_028.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_067.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_084.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_041.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_007.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_032.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_088.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_045.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_075.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_037.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_024.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_062.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_092.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_111.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_118.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_090.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_105.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_000.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_073.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_060.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_030.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_043.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_056.mem
-  /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/weights/pc_snn_weight_086.mem
-}
 read_verilog -library xil_defaultlib -sv {
   /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/verilog/SNN_layer.sv
   /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.srcs/sources_1/imports/verilog/SNN_top.sv

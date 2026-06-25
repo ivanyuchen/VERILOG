@@ -24,7 +24,8 @@ module snn_dma_wrapper #(
 );
 
   localparam IMAGE_BITS = INPUT_DIM * PIXEL_BITS;
-  localparam INPUT_WORDS = (IMAGE_BITS + AXIS_DATA_WIDTH - 1) / AXIS_DATA_WIDTH;
+  localparam IMAGE_WORDS = (IMAGE_BITS + AXIS_DATA_WIDTH - 1) / AXIS_DATA_WIDTH;
+  localparam INPUT_WORDS = IMAGE_WORDS + 1;
   localparam RESULT_BITS = HIDDEN_DIM * SPIKE_COUNT_WIDTH;
   localparam RESULT_WORDS = (RESULT_BITS + AXIS_DATA_WIDTH - 1) / AXIS_DATA_WIDTH;
 
@@ -43,6 +44,7 @@ module snn_dma_wrapper #(
   reg [IMAGE_BITS-1:0] image_flat;
   reg [RESULT_WORDS*AXIS_DATA_WIDTH-1:0] result_flat_padded;
   reg snn_start;
+  reg snn_learn_enable;
 
   wire snn_busy;
   wire snn_done;
@@ -63,6 +65,7 @@ module snn_dma_wrapper #(
       .clk(aclk),
       .rst_n(aresetn),
       .start(snn_start),
+      .learn_enable(snn_learn_enable),
       .X_t(image_flat),
       .busy(snn_busy),
       .done(snn_done),
@@ -79,6 +82,7 @@ module snn_dma_wrapper #(
       image_flat <= {IMAGE_BITS{1'b0}};
       result_flat_padded <= {(RESULT_WORDS * AXIS_DATA_WIDTH) {1'b0}};
       snn_start <= 1'b0;
+      snn_learn_enable <= 1'b0;
       m_axis_tdata <= {AXIS_DATA_WIDTH{1'b0}};
       m_axis_tvalid <= 1'b0;
       m_axis_tlast <= 1'b0;
@@ -93,20 +97,16 @@ module snn_dma_wrapper #(
           m_axis_tlast <= 1'b0;
 
           if (s_axis_tvalid && s_axis_tready) begin
-            image_flat[0+:AXIS_DATA_WIDTH] <= s_axis_tdata;
+            snn_learn_enable <= s_axis_tdata[0];
 
-            if (INPUT_WORDS == 1 || s_axis_tlast) begin
-              state <= State_Start;
-            end else begin
-              input_word_index <= input_word_index + 1'b1;
-              state <= State_Rx;
-            end
+            input_word_index <= input_word_index + 1'b1;
+            state <= State_Rx;
           end
         end
 
         State_Rx: begin
           if (s_axis_tvalid && s_axis_tready) begin
-            image_flat[input_word_index*AXIS_DATA_WIDTH+:AXIS_DATA_WIDTH] <= s_axis_tdata;
+            image_flat[(input_word_index-1'b1)*AXIS_DATA_WIDTH+:AXIS_DATA_WIDTH] <= s_axis_tdata;
 
             if ((input_word_index == INPUT_WORDS - 1) || s_axis_tlast) begin
               input_word_index <= {INPUT_COUNT_WIDTH{1'b0}};

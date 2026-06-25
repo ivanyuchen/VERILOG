@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
--- Date        : Sun Jun 21 14:08:30 2026
+-- Date        : Mon Jun 22 12:35:33 2026
 -- Host        : ivanyuchen-Predator-PHN16-71 running 64-bit Ubuntu 24.04.4 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/ip/PCSNN_block_design_axi_mem_intercon_imp_xbar_0/PCSNN_block_design_axi_mem_intercon_imp_xbar_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top PCSNN_block_design_axi_mem_intercon_imp_xbar_0 -prefix
+--               PCSNN_block_design_axi_mem_intercon_imp_xbar_0_ PCSNN_block_design_axi_mem_intercon_imp_xbar_0_sim_netlist.vhdl
 -- Design      : PCSNN_block_design_axi_mem_intercon_imp_xbar_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -59,8 +59,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_addr_
     \gen_single_thread.active_target_hot_1\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     D : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_addr_arbiter : entity is "axi_crossbar_v2_1_38_addr_arbiter";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_addr_arbiter;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_addr_arbiter is
@@ -3170,8 +3168,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_decer
     \gen_axi.s_axi_rlast_i_reg_0\ : in STD_LOGIC;
     \gen_axi.s_axi_bid_i_reg[1]_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_decerr_slave : entity is "axi_crossbar_v2_1_38_decerr_slave";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_decerr_slave;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_decerr_slave is
@@ -3750,8 +3746,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_si_tr
     \gen_single_thread.accept_cnt_reg[3]_0\ : in STD_LOGIC;
     E : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_si_transactor : entity is "axi_crossbar_v2_1_38_si_transactor";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_si_transactor;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_si_transactor is
@@ -5271,8 +5265,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_split
     aresetn_d : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_splitter : entity is "axi_crossbar_v2_1_38_splitter";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_splitter;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_splitter is
@@ -9846,8 +9838,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_data_fifo_v2_1_36_axic
     s_axi_wvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     sel_4 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_data_fifo_v2_1_36_axic_reg_srl_fifo : entity is "axi_data_fifo_v2_1_36_axic_reg_srl_fifo";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_data_fifo_v2_1_36_axic_reg_srl_fifo;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_data_fifo_v2_1_36_axic_reg_srl_fifo is
@@ -12056,8 +12046,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_register_slice_v2_1_36
     m_axi_rdata : in STD_LOGIC_VECTOR ( 63 downto 0 );
     \m_payload_i_reg[3]\ : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_register_slice_v2_1_36_axi_register_slice : entity is "axi_register_slice_v2_1_36_axi_register_slice";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_register_slice_v2_1_36_axi_register_slice;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_register_slice_v2_1_36_axi_register_slice is
@@ -12268,8 +12256,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata
     m_avalid_1 : in STD_LOGIC;
     SR : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata_mux : entity is "axi_crossbar_v2_1_38_wdata_mux";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata_mux;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata_mux is
@@ -12382,8 +12368,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata
     s_axi_wvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     sel_4 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata_router : entity is "axi_crossbar_v2_1_38_wdata_router";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata_router;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_wdata_router is
@@ -12519,8 +12503,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_cross
     s_axi_arsize : in STD_LOGIC_VECTOR ( 5 downto 0 );
     s_axi_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_crossbar : entity is "axi_crossbar_v2_1_38_crossbar";
 end PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_crossbar;
 
 architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_crossbar is
@@ -13442,8 +13424,6 @@ entity PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_axi_c
   attribute C_S_AXI_WRITE_ACCEPTANCE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_axi_crossbar : entity is "96'b000000000000000000000000000000100000000000000000000000000001000000000000000000000000000000000010";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_axi_crossbar : entity is "yes";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_axi_crossbar : entity is "axi_crossbar_v2_1_38_axi_crossbar";
   attribute P_ADDR_DECODE : integer;
   attribute P_ADDR_DECODE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0_axi_crossbar_v2_1_38_axi_crossbar : entity is 1;
   attribute P_AXI3 : integer;
@@ -13950,7 +13930,7 @@ architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0 is
   attribute X_INTERFACE_MODE : string;
   attribute X_INTERFACE_MODE of aclk : signal is "slave";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of aclk : signal is "XIL_INTERFACENAME CLKIF, ASSOCIATED_BUSIF M00_AXI:M01_AXI:M02_AXI:M03_AXI:M04_AXI:M05_AXI:M06_AXI:M07_AXI:M08_AXI:M09_AXI:M10_AXI:M11_AXI:M12_AXI:M13_AXI:M14_AXI:M15_AXI:S00_AXI:S01_AXI:S02_AXI:S03_AXI:S04_AXI:S05_AXI:S06_AXI:S07_AXI:S08_AXI:S09_AXI:S10_AXI:S11_AXI:S12_AXI:S13_AXI:S14_AXI:S15_AXI, ASSOCIATED_RESET aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of aclk : signal is "XIL_INTERFACENAME CLKIF, ASSOCIATED_BUSIF M00_AXI:M01_AXI:M02_AXI:M03_AXI:M04_AXI:M05_AXI:M06_AXI:M07_AXI:M08_AXI:M09_AXI:M10_AXI:M11_AXI:M12_AXI:M13_AXI:M14_AXI:M15_AXI:S00_AXI:S01_AXI:S02_AXI:S03_AXI:S04_AXI:S05_AXI:S06_AXI:S07_AXI:S08_AXI:S09_AXI:S10_AXI:S11_AXI:S12_AXI:S13_AXI:S14_AXI:S15_AXI, ASSOCIATED_RESET aresetn, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of aresetn : signal is "xilinx.com:signal:reset:1.0 RSTIF RST";
   attribute X_INTERFACE_MODE of aresetn : signal is "slave";
   attribute X_INTERFACE_PARAMETER of aresetn : signal is "XIL_INTERFACENAME RSTIF, POLARITY ACTIVE_LOW, INSERT_VIP 0, TYPE INTERCONNECT";
@@ -13970,7 +13950,7 @@ architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0 is
   attribute X_INTERFACE_INFO of m_axi_awcache : signal is "xilinx.com:interface:aximm:1.0 M00_AXI AWCACHE";
   attribute X_INTERFACE_INFO of m_axi_awid : signal is "xilinx.com:interface:aximm:1.0 M00_AXI AWID";
   attribute X_INTERFACE_MODE of m_axi_awid : signal is "master";
-  attribute X_INTERFACE_PARAMETER of m_axi_awid : signal is "XIL_INTERFACENAME M00_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 100000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of m_axi_awid : signal is "XIL_INTERFACENAME M00_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 50000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m_axi_awlen : signal is "xilinx.com:interface:aximm:1.0 M00_AXI AWLEN";
   attribute X_INTERFACE_INFO of m_axi_awlock : signal is "xilinx.com:interface:aximm:1.0 M00_AXI AWLOCK";
   attribute X_INTERFACE_INFO of m_axi_awprot : signal is "xilinx.com:interface:aximm:1.0 M00_AXI AWPROT";
@@ -14010,7 +13990,7 @@ architecture STRUCTURE of PCSNN_block_design_axi_mem_intercon_imp_xbar_0 is
   attribute X_INTERFACE_INFO of s_axi_awcache : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWCACHE [3:0] [3:0], xilinx.com:interface:aximm:1.0 S01_AXI AWCACHE [3:0] [7:4], xilinx.com:interface:aximm:1.0 S02_AXI AWCACHE [3:0] [11:8]";
   attribute X_INTERFACE_INFO of s_axi_awid : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWID [1:0] [1:0], xilinx.com:interface:aximm:1.0 S01_AXI AWID [1:0] [3:2], xilinx.com:interface:aximm:1.0 S02_AXI AWID [1:0] [5:4]";
   attribute X_INTERFACE_MODE of s_axi_awid : signal is "slave S00_AXI, slave S01_AXI, slave S02_AXI";
-  attribute X_INTERFACE_PARAMETER of s_axi_awid : signal is "XIL_INTERFACENAME S00_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 100000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0, XIL_INTERFACENAME S01_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 100000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0, XIL_INTERFACENAME S02_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 100000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of s_axi_awid : signal is "XIL_INTERFACENAME S00_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 50000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0, XIL_INTERFACENAME S01_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 50000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0, XIL_INTERFACENAME S02_AXI, DATA_WIDTH 64, PROTOCOL AXI3, FREQ_HZ 50000000, ID_WIDTH 2, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN PCSNN_block_design_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axi_awlen : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWLEN [3:0] [3:0], xilinx.com:interface:aximm:1.0 S01_AXI AWLEN [3:0] [7:4], xilinx.com:interface:aximm:1.0 S02_AXI AWLEN [3:0] [11:8]";
   attribute X_INTERFACE_INFO of s_axi_awlock : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWLOCK [1:0] [1:0], xilinx.com:interface:aximm:1.0 S01_AXI AWLOCK [1:0] [3:2], xilinx.com:interface:aximm:1.0 S02_AXI AWLOCK [1:0] [5:4]";
   attribute X_INTERFACE_INFO of s_axi_awprot : signal is "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT [2:0] [2:0], xilinx.com:interface:aximm:1.0 S01_AXI AWPROT [2:0] [5:3], xilinx.com:interface:aximm:1.0 S02_AXI AWPROT [2:0] [8:6]";

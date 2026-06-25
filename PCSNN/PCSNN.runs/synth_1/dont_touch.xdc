@@ -22,6 +22,9 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block
 # IP: bd/PCSNN_block_design/ip/PCSNN_block_design_axi_mem_intercon_imp_xbar_0/PCSNN_block_design_axi_mem_intercon_imp_xbar_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block_design_axi_mem_intercon_imp_xbar_0 || ORIG_REF_NAME==PCSNN_block_design_axi_mem_intercon_imp_xbar_0} -quiet] -quiet
 
+# IP: bd/PCSNN_block_design/ip/PCSNN_block_design_axi_mem_intercon_0/PCSNN_block_design_axi_mem_intercon_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block_design_axi_mem_intercon_0 || ORIG_REF_NAME==PCSNN_block_design_axi_mem_intercon_0} -quiet] -quiet
+
 # IP: bd/PCSNN_block_design/ip/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0/PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0 || ORIG_REF_NAME==PCSNN_block_design_axi_mem_intercon_imp_auto_pc_0} -quiet] -quiet
 
@@ -33,8 +36,5 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block
 
 # IP: bd/PCSNN_block_design/ip/PCSNN_block_design_axi_mem_intercon_imp_auto_us_1/PCSNN_block_design_axi_mem_intercon_imp_auto_us_1.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block_design_axi_mem_intercon_imp_auto_us_1 || ORIG_REF_NAME==PCSNN_block_design_axi_mem_intercon_imp_auto_us_1} -quiet] -quiet
-
-# IP: bd/PCSNN_block_design/ip/PCSNN_block_design_axi_mem_intercon_0/PCSNN_block_design_axi_mem_intercon_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCSNN_block_design_axi_mem_intercon_0 || ORIG_REF_NAME==PCSNN_block_design_axi_mem_intercon_0} -quiet] -quiet
 
 # XDC: /home/ivanyuchen/CODING_FILES/VERILOG/PCSNN/PCSNN.gen/sources_1/bd/PCSNN_block_design/PCSNN_block_design_ooc.xdc
