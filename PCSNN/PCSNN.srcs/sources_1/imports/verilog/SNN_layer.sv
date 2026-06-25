@@ -3,16 +3,15 @@
 module w_ram_bank #(
     parameter int HIDDEN_DIM = 128,
     parameter int INPUT_DIM = 784,
+    parameter int WORD_WIDTH = HIDDEN_DIM * 16,
     parameter WEIGHTS_FILE = ""
 ) (
     input logic clk,
     input logic [$clog2(INPUT_DIM)-1:0] addr,
     input logic wr_en,
-    input logic [HIDDEN_DIM*16-1:0] wr_weight_word,
-    output logic [HIDDEN_DIM*16-1:0] weight_word
+    input logic [WORD_WIDTH-1:0] wr_word,
+    output logic [WORD_WIDTH-1:0] word_out
 );
-
-  localparam int WORD_WIDTH = HIDDEN_DIM * 16;
 
   (* ram_style = "block" *)
   logic [WORD_WIDTH-1:0] ram[0:INPUT_DIM-1];
@@ -28,15 +27,15 @@ module w_ram_bank #(
       $readmemh(WEIGHTS_FILE, ram);
     end
 
-    weight_word = {WORD_WIDTH{1'b0}};
+    word_out = {WORD_WIDTH{1'b0}};
   end
 
   always_ff @(posedge clk) begin
     if (wr_en) begin
-      ram[addr] <= wr_weight_word;
+      ram[addr] <= wr_word;
     end
 
-    weight_word <= ram[addr];
+    word_out <= ram[addr];
   end
 
 endmodule
@@ -69,7 +68,10 @@ module SNN_layer #(
   localparam int TIME_WIDTH = (TIME_STEPS <= 1) ? 1 : $clog2(TIME_STEPS);
   localparam int NEURON_GROUP_COUNT = (HIDDEN_DIM + PARALLEL_NEURONS - 1) / PARALLEL_NEURONS;
   localparam int NEURON_GROUP_WIDTH = (NEURON_GROUP_COUNT <= 1) ? 1 : $clog2(NEURON_GROUP_COUNT);
-  localparam int WORD_WIDTH = HIDDEN_DIM * 16;
+  localparam int WEIGHT_BITS = 16;
+  localparam int GRAD_BITS = 16;
+  localparam int WEIGHT_WORD_WIDTH = HIDDEN_DIM * WEIGHT_BITS;
+  localparam int GRAD_WORD_WIDTH = HIDDEN_DIM * GRAD_BITS;
   localparam logic [ADDR_WIDTH-1:0] LAST_PIXEL = ADDR_WIDTH'(INPUT_DIM - 1);
   localparam logic [TIME_WIDTH-1:0] LAST_TIMESTEP = TIME_WIDTH'(TIME_STEPS - 1);
   localparam logic [NEURON_GROUP_WIDTH-1:0] LAST_NEURON_GROUP =
@@ -87,12 +89,14 @@ module SNN_layer #(
   localparam logic signed [25:0] SCALE_VALUE = 26'sd1024;
   localparam logic signed [25:0] V_THR = 26'sd512;
   localparam int CURRENT_SHIFT = 13;
-  localparam int ERROR_LEARNING_SHIFT = 10;
+  localparam int LEARNING_SHIFT = 10;
   localparam int BATCH_AVG_SHIFT = 5;
-  localparam logic signed [15:0] WEIGHT_CLIP_MIN = -16'sd512;
-  localparam logic signed [15:0] WEIGHT_CLIP_MAX = 16'sd512;
-  localparam logic signed [16:0] WEIGHT_CLIP_MIN_EXT = -17'sd512;
-  localparam logic signed [16:0] WEIGHT_CLIP_MAX_EXT = 17'sd512;
+  localparam int TIME_AVG_SHIFT = 4;
+  localparam int WEIGHT_DECAY_SHIFT = 13;
+  localparam logic signed [15:0] WEIGHT_CLIP_MIN = 16'sh8000;
+  localparam logic signed [15:0] WEIGHT_CLIP_MAX = 16'sh7fff;
+  localparam logic signed [16:0] WEIGHT_CLIP_MIN_EXT = -17'sd32768;
+  localparam logic signed [16:0] WEIGHT_CLIP_MAX_EXT = 17'sd32767;
 
   typedef enum logic [3:0] {
     State_Idle,
@@ -106,7 +110,10 @@ module SNN_layer #(
     State_Spike,
     State_Done,
     State_Weight_Update,
-    State_Wait_Weight2
+    State_Wait_Weight2,
+    State_Grad_Set_Pixel,
+    State_Grad_Wait,
+    State_Grad_Update
   } state_t;
 
   state_t state;
@@ -114,19 +121,20 @@ module SNN_layer #(
   logic [ADDR_WIDTH-1:0] pixel_addr;
   logic [TIME_WIDTH-1:0] timestep_counter;
   logic [NEURON_GROUP_WIDTH-1:0] neuron_group_counter;
-  logic [WORD_WIDTH-1:0] weight_word;
+  logic [WEIGHT_WORD_WIDTH-1:0] weight_word;
   logic weight_wr_en;
-  logic [WORD_WIDTH-1:0] weight_wr_word;
-  logic [WORD_WIDTH-1:0] weight_next_word;
-  logic [WORD_WIDTH-1:0] grad_word;
+  logic [WEIGHT_WORD_WIDTH-1:0] weight_wr_word;
+  logic [WEIGHT_WORD_WIDTH-1:0] weight_next_word;
+  logic [GRAD_WORD_WIDTH-1:0] grad_word;
   logic grad_wr_en;
-  logic [WORD_WIDTH-1:0] grad_wr_word;
-  logic [WORD_WIDTH-1:0] grad_update_word;
-  logic [WORD_WIDTH-1:0] grad_next_word;
+  logic [GRAD_WORD_WIDTH-1:0] grad_wr_word;
+  logic [GRAD_WORD_WIDTH-1:0] grad_update_word;
+  logic [GRAD_WORD_WIDTH-1:0] grad_next_word;
   logic [INPUT_DIM-1:0] spike_frame;
   logic signed [25:0] weight_accum;
   logic signed [25:0] lane_weight_sum;
   logic signed [25:0] err_latched;
+  logic signed [25:0] err_history[0:INPUT_DIM-1];
   logic signed [51:0] I_accum[0:HIDDEN_DIM-1];
   logic signed [25:0] V_mem[0:HIDDEN_DIM-1];
   logic [SPIKE_COUNT_WIDTH-1:0] spike_counts[0:HIDDEN_DIM-1];
@@ -145,15 +153,22 @@ module SNN_layer #(
   assign weight_wr_en = learn_enable && (state == State_Weight_Update);
   assign weight_wr_word = weight_next_word;
   assign grad_wr_en = learn_enable && (
-      ((state == State_Update) && (neuron_group_counter == LAST_NEURON_GROUP)) ||
+      ((state == State_Grad_Update) && (neuron_group_counter == LAST_NEURON_GROUP)) ||
       (state == State_Weight_Update)
   );
-  assign grad_wr_word = (state == State_Weight_Update) ? {WORD_WIDTH{1'b0}} : grad_next_word;
+  assign grad_wr_word = (state == State_Weight_Update) ? {GRAD_WORD_WIDTH{1'b0}} : grad_next_word;
 
-  function automatic logic signed [15:0] weight_at(input logic [WORD_WIDTH-1:0] word,
+  function automatic logic signed [15:0] weight_at(input logic [WEIGHT_WORD_WIDTH-1:0] word,
                                                    input int unsigned neuron_index);
     begin
-      weight_at = word[neuron_index*16+:16];
+      weight_at = word[neuron_index*WEIGHT_BITS+:WEIGHT_BITS];
+    end
+  endfunction
+
+  function automatic logic signed [15:0] grad_at(input logic [GRAD_WORD_WIDTH-1:0] word,
+                                                 input int unsigned neuron_index);
+    begin
+      grad_at = word[neuron_index*GRAD_BITS+:GRAD_BITS];
     end
   endfunction
 
@@ -170,16 +185,12 @@ module SNN_layer #(
       if (!spike) begin
         grad_addend = 16'sd0;
       end else begin
-        if (error >= 26'sd0) begin
-          scaled_error = error >>> ERROR_LEARNING_SHIFT;
-        end else begin
-          scaled_error = -((-error) >>> ERROR_LEARNING_SHIFT);
-        end
+        scaled_error = error >>> LEARNING_SHIFT;
 
         if (scaled_error > 26'sd32767) begin
           grad_addend = 16'sd32767;
         end else if (scaled_error < -26'sd32768) begin
-          grad_addend = -16'sd32768;
+          grad_addend = WEIGHT_CLIP_MIN;
         end else begin
           grad_addend = scaled_error[15:0];
         end
@@ -187,21 +198,20 @@ module SNN_layer #(
     end
   endfunction
 
-  function automatic logic signed [15:0] average_grad(input logic signed [15:0] grad);
+  function automatic logic signed [15:0] golden_weight_delta(input logic signed [15:0] grad);
+    logic signed [15:0] shifted_grad;
     begin
-      if (grad >= 16'sd0) begin
-        average_grad = grad >>> BATCH_AVG_SHIFT;
-      end else begin
-        average_grad = -((-grad) >>> BATCH_AVG_SHIFT);
-      end
+      shifted_grad = grad >>> (BATCH_AVG_SHIFT + TIME_AVG_SHIFT);
+      golden_weight_delta = shifted_grad;
     end
   endfunction
 
   function automatic logic signed [15:0] clipped_weight_add(input logic signed [15:0] weight,
-                                                            input logic signed [15:0] grad);
+                                                            input logic signed [15:0] delta,
+                                                            input logic signed [15:0] decay);
     logic signed [16:0] sum;
     begin
-      sum = {weight[15], weight} + {grad[15], grad};
+      sum = {weight[15], weight} + {delta[15], delta} - {decay[15], decay};
 
       if (sum > WEIGHT_CLIP_MAX_EXT) begin
         clipped_weight_add = WEIGHT_CLIP_MAX;
@@ -227,25 +237,27 @@ module SNN_layer #(
   w_ram_bank #(
       .HIDDEN_DIM  (HIDDEN_DIM),
       .INPUT_DIM   (INPUT_DIM),
+      .WORD_WIDTH  (WEIGHT_WORD_WIDTH),
       .WEIGHTS_FILE(WEIGHTS_FILE)
   ) weight_ram_bank_inst (
-      .clk           (clk),
-      .addr          (pixel_addr),
-      .wr_en         (weight_wr_en),
-      .wr_weight_word(weight_wr_word),
-      .weight_word   (weight_word)
+      .clk     (clk),
+      .addr    (pixel_addr),
+      .wr_en   (weight_wr_en),
+      .wr_word (weight_wr_word),
+      .word_out(weight_word)
   );
 
   w_ram_bank #(
       .HIDDEN_DIM  (HIDDEN_DIM),
       .INPUT_DIM   (INPUT_DIM),
+      .WORD_WIDTH  (GRAD_WORD_WIDTH),
       .WEIGHTS_FILE("")
   ) grad_ram_bank_inst (
-      .clk           (clk),
-      .addr          (pixel_addr),
-      .wr_en         (grad_wr_en),
-      .wr_weight_word(grad_wr_word),
-      .weight_word   (grad_word)
+      .clk     (clk),
+      .addr    (pixel_addr),
+      .wr_en   (grad_wr_en),
+      .wr_word (grad_wr_word),
+      .word_out(grad_word)
   );
 
   always_ff @(posedge clk or negedge rst_n) begin
@@ -283,9 +295,9 @@ module SNN_layer #(
       neuron_index = (neuron_group_counter * PARALLEL_NEURONS) + lane;
 
       if (neuron_index < HIDDEN_DIM) begin
-        grad_lane = $signed(grad_update_word[neuron_index*16+:16]);
-        grad_next_word[neuron_index*16+:16] =
-            grad_lane + grad_addend(Spike_out_Cluster[neuron_index], err_latched);
+        grad_lane = grad_at(grad_update_word, neuron_index);
+        grad_next_word[neuron_index*GRAD_BITS+:GRAD_BITS] =
+            grad_lane + grad_addend(Spike_out_Cluster[neuron_index], err_history[pixel_addr]);
       end
     end
   end
@@ -293,13 +305,18 @@ module SNN_layer #(
   always_comb begin
     logic signed [15:0] current_weight;
     logic signed [15:0] current_grad;
+    logic signed [15:0] weight_delta;
+    logic signed [15:0] weight_decay;
 
     weight_next_word = weight_word;
 
     for (int neuron_index = 0; neuron_index < HIDDEN_DIM; neuron_index = neuron_index + 1) begin
       current_weight = weight_at(weight_word, neuron_index);
-      current_grad   = average_grad(weight_at(grad_word, neuron_index));
-      weight_next_word[neuron_index*16+:16] = clipped_weight_add(current_weight, current_grad);
+      current_grad   = grad_at(grad_word, neuron_index);
+      weight_delta   = golden_weight_delta(current_grad);
+      weight_decay   = current_weight >>> WEIGHT_DECAY_SHIFT;
+      weight_next_word[neuron_index*WEIGHT_BITS+:WEIGHT_BITS] =
+          clipped_weight_add(current_weight, weight_delta, weight_decay);
     end
   end
 
@@ -330,7 +347,7 @@ module SNN_layer #(
       neuron_group_counter <= '0;
       weight_accum <= 26'sd0;
       err_latched <= 26'sd0;
-      grad_update_word <= {WORD_WIDTH{1'b0}};
+      grad_update_word <= {GRAD_WORD_WIDTH{1'b0}};
       batch_counter <= '0;
 
       for (int i = 0; i < HIDDEN_DIM; i = i + 1) begin
@@ -424,7 +441,9 @@ module SNN_layer #(
           end
 
           if (learn_enable) begin
-            grad_update_word <= grad_next_word;
+            if (neuron_group_counter == '0) begin
+              err_history[pixel_addr] <= err_latched;
+            end
           end
 
           if (neuron_group_counter == LAST_NEURON_GROUP) begin
@@ -471,11 +490,49 @@ module SNN_layer #(
           if (neuron_group_counter == LAST_NEURON_GROUP) begin
             neuron_group_counter <= '0;
 
-            if (timestep_counter == LAST_TIMESTEP) begin
+            if (learn_enable) begin
+              pixel_addr <= '0;
+              state <= State_Grad_Set_Pixel;
+            end else if (timestep_counter == LAST_TIMESTEP) begin
               state <= State_Done;
             end else begin
               timestep_counter <= timestep_counter + 1'b1;
               state <= State_Random;
+            end
+          end else begin
+            neuron_group_counter <= neuron_group_counter + 1'b1;
+          end
+        end
+
+        State_Grad_Set_Pixel: begin
+          neuron_group_counter <= '0;
+          state <= State_Grad_Wait;
+        end
+
+        State_Grad_Wait: begin
+          grad_update_word <= grad_word;
+          neuron_group_counter <= '0;
+          state <= State_Grad_Update;
+        end
+
+        State_Grad_Update: begin
+          grad_update_word <= grad_next_word;
+
+          if (neuron_group_counter == LAST_NEURON_GROUP) begin
+            neuron_group_counter <= '0;
+
+            if (pixel_addr == LAST_PIXEL) begin
+              pixel_addr <= '0;
+
+              if (timestep_counter == LAST_TIMESTEP) begin
+                state <= State_Done;
+              end else begin
+                timestep_counter <= timestep_counter + 1'b1;
+                state <= State_Random;
+              end
+            end else begin
+              pixel_addr <= pixel_addr + 1'b1;
+              state <= State_Grad_Set_Pixel;
             end
           end else begin
             neuron_group_counter <= neuron_group_counter + 1'b1;
